@@ -2,8 +2,8 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Category;
 use App\Entity\Product;
-use Cocur\Slugify\Slugify;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
@@ -22,22 +22,39 @@ class AppFixtures extends Fixture
         $faker = Factory::create();
         $faker->addProvider(new \Liior\Faker\Prices($faker));
         $faker->addProvider(new \Bezhanov\Faker\Provider\Commerce($faker));
-        $slugify = new Slugify();
 
-        for ($i=0; $i<100; $i++) {
-            $product = new Product();
 
-            $product->setName($faker->productName)
+        for ($j=0; $j<5; $j++) {
+
+            $category = new Category();
+
+            $category->setName($faker->department(3, true))
+                     ->setSlug(strtolower($this->slugger->slug($category->getName())));
+            $manager->persist($category);
+
+            for ($i=0; $i<mt_rand(15,20); $i++) {
+                $product = new Product();
+
+                $product->setName($faker->productName)
                     ->setPrice($faker->price(4000,20000))
-                    ->setSlug(strtolower($this->slugger->slug($product->getName())));
-            $manager->persist($product);
+                    ->setSlug(strtolower($this->slugger->slug($product->getName())))
+                    ->setCategory($category);
+
+                $manager->persist($product);
+            }
+
+
         }
-            $manager->flush();
+        $manager->flush();
+
+
 
 
         // $product = new Product();
         // $manager->persist($product);
 
-        $manager->flush();
+
     }
+
+
 }
