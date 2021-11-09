@@ -7,20 +7,29 @@ use Cocur\Slugify\Slugify;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
+use Symfony\Component\String\Slugger\SluggerInterface;
+
 
 class AppFixtures extends Fixture
 {
+    protected $slugger;
+    public function __construct(SluggerInterface $slugger)
+    {
+        $this->slugger = $slugger;
+    }
     public function load(ObjectManager $manager): void
     {
-        $faker = Factory::create('en-EN');
+        $faker = Factory::create();
+        $faker->addProvider(new \Liior\Faker\Prices($faker));
+        $faker->addProvider(new \Bezhanov\Faker\Provider\Commerce($faker));
         $slugify = new Slugify();
 
         for ($i=0; $i<100; $i++) {
             $product = new Product();
-            $name = $faker->sentence;
-            $product->setName($name)
-                    ->setPrice(mt_rand(100,700))
-                    ->setSlug($slugify->slugify($name));
+           
+            $product->setName($faker->productName)
+                    ->setPrice($faker->price(4000,20000))
+                    ->setSlug($this->slugger->slug($product->getName()));
             $manager->persist($product);
         }
             $manager->flush();

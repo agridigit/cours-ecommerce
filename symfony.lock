@@ -112,6 +112,9 @@
     "liorchamla/faker-prices": {
         "version": "2.0.0"
     },
+    "mbezhanov/faker-provider-collection": {
+        "version": "2.0.1"
+    },
     "nikic/php-parser": {
         "version": "v4.13.1"
     },
