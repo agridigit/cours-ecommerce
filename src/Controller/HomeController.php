@@ -17,11 +17,10 @@ class HomeController extends AbstractController
     public function homepage(EntityManagerInterface $em)
     {
         $productRepository = $em->getRepository(Product::class);
-        $product = $productRepository->find(3);
-        $em->remove($product);
-        $em->flush();
+        $products = $productRepository->findBy([],[],9);
+
         #dd($product);
-        return $this->render('home.html.twig');
+        return $this->render('home.html.twig',compact('products'));
         
     }
 

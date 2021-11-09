@@ -75,6 +75,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/cocur/slugify" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/liorchamla/faker-prices" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/mbezhanov/faker-provider-collection" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/bluemmb/faker-picsum-photos-provider" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
