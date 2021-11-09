@@ -1,4 +1,7 @@
 {
+    "cocur/slugify": {
+        "version": "v4.0.0"
+    },
     "composer/package-versions-deprecated": {
         "version": "1.11.99.4"
     },
@@ -105,6 +108,9 @@
     },
     "laminas/laminas-code": {
         "version": "4.4.3"
+    },
+    "liorchamla/faker-prices": {
+        "version": "2.0.0"
     },
     "nikic/php-parser": {
         "version": "v4.13.1"
