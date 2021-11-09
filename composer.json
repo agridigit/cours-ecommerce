@@ -69,5 +69,8 @@
             "allow-contrib": false,
             "require": "5.1.*"
         }
+    },
+    "require-dev": {
+        "fakerphp/faker": "^1.16"
     }
 }
