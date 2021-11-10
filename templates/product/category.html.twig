@@ -1,10 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
+{% block title %}
+    Category : {{ slug }}
+{% endblock %}
 
-    <h1>Nos produits phares</h1>
+{% block body %}
+    Category : <h1>{{ category.name }}</h1>
     <div class="row">
-        {% for product in products %}
+        {% for product in category.products %}
             <div class="col-md-4 mt-2">
                 <div class="card">
                     <div class="card-body">
@@ -14,7 +17,7 @@
                         <div class="mb-2">
                             <h6 class="font-weight-semibold mb-2"> <a href="#" class="text-default mb-2" data-abc="true">{{ product.shortDescription }}</a> </h6> <a href="#" class="text-muted" data-abc="true">{{ product.name }}</a>
                         </div>
-                        <span ><a class="badge badge-info mb-5" href="{{ product.category.slug }}">{{ product.getcategory.name }}</a></span>
+
                         <h3 class="mb-0 font-weight-semibold">{{ product.price /100 }} MAD</h3>
                         <div> <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> </div>
 
@@ -25,17 +28,6 @@
             </div>
         {% endfor %}
     </div>
-
-<div class="row mt-4 md-0">
-    {% include "shared/_footer.html.twig" with {
-        'name': "Home Page",
-        'content': "this is a content"
-    } %}
-</div>
-
 {% endblock %}
 
-{% block title %}
-
-{% endblock %}
 

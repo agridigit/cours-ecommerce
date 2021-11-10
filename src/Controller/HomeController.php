@@ -17,7 +17,7 @@ class HomeController extends AbstractController
     public function homepage(EntityManagerInterface $em)
     {
         $productRepository = $em->getRepository(Product::class);
-        $products = $productRepository->findBy([],[],9);
+        $products = $productRepository->findBy([],[],130);
 
         #dd($product);
         return $this->render('home.html.twig',compact('products'));
