@@ -5,6 +5,11 @@
 {% endblock %}
 
 {% block body %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item"><a href="#">{{ category.name }}</a></li>
+
+    </ol>
     Category : <h1>{{ category.name }}</h1>
     <div class="row">
         {% for product in category.products %}

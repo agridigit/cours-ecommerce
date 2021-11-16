@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\CategoryRepository;
+use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -28,5 +29,27 @@ class ProductController extends AbstractController
             'slug' => $slug,
             'category' => $category
         ]);
+    }
+
+    /**
+     * @param $slug
+     * @param ProductRepository $productRepository
+     * @Route ("/{category_slug}/{slug}", name="product_show")
+     */
+    public function show($slug, ProductRepository $productRepository)
+    {
+        $product = $productRepository->findOneBy([
+            'slug' => $slug,
+
+        ]);
+
+        if (!$product) {
+            throw new NotFoundHttpException("Product not Found");
+        }
+
+        return $this->render('product/show.html.twig', [
+            'product' => $product
+        ]);
+
     }
 }

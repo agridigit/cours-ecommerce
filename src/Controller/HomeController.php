@@ -10,9 +10,11 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
 {
+
     /**
-     * @Route ("/", name="homepage")
-     *
+     * @param EntityManagerInterface $em
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @Route ("/", name="home_page")
      */
     public function homepage(EntityManagerInterface $em)
     {
