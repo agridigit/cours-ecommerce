@@ -14,12 +14,14 @@
                         <div class="mb-2">
                             <h6 class="font-weight-semibold mb-2"> <a href="#" class="text-default mb-2" data-abc="true">{{ product.shortDescription }}</a> </h6> <a href="#" class="text-muted" data-abc="true">{{ product.name }}</a>
                         </div>
-                        <span ><a class="badge badge-info mb-5" href="{{ product.category.slug }}">{{ product.getcategory.name }}</a></span>
+                        <span ><a class="badge badge-info mb-5" href="{{ path('product_category', {'slug': product.category.slug}) }}">{{ product.getcategory.name }}</a></span>
                         <h3 class="mb-0 font-weight-semibold">{{ product.price /100 }} MAD</h3>
                         <div> <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> </div>
 
-                        <button type="button" class="btn bg-cart"><i class="fas fa-money-check-alt"></i> Details</button>
-                        <button type="button" class="btn bg-cart"><i class="fa fa-cart-plus mr-2"></i> Add to cart</button>
+                        <a href="{{ path('product_show', {'category_slug': product.category.slug, 'slug': product.slug}) }}" class="btn btn-info" >Details</a>
+                        <a href="#" class="btn btn-warning" >Add to cart</a>
+
+
                     </div>
                 </div>
             </div>
